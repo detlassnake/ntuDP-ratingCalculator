@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private double studentRating;
-    private int bonusMarkCounter;
 
     public static void main(String[] args) {
         launch(args);
@@ -29,6 +28,7 @@ public class Main extends Application {
         Button btnBudgetRating = new Button("BUDGET RATING");
         Button btnAverageRating = new Button("AVERAGE RATING");
         Button btnBonusPlus = new Button("+ BONUS");
+        Button btnBonusMinus = new Button("- BONUS");
         Button btnClear = new Button("CLEAR");
         Label labelMark = new Label("0.0");
         TextField textField = new TextField();
@@ -60,21 +60,22 @@ public class Main extends Application {
         });
 
         btnBonusPlus.setOnAction(event -> {
-            if (bonusMarkCounter != 6) {
-                bonusMarkCounter++;
                 studentRating++;
                 labelMark.setText("" + studentRating);
-            }
+        });
+
+        btnBonusMinus.setOnAction(event -> {
+            --studentRating;
+            labelMark.setText("" + studentRating);
         });
 
         btnClear.setOnAction(event -> {
             studentRating = 0.0;
-            bonusMarkCounter = 0;
             labelMark.setText("" + studentRating);
             textField.setText("");
         });
 
-        rootNode.getChildren().addAll(textField, btnBudgetRating, btnAverageRating, btnBonusPlus, btnClear, labelMark);
+        rootNode.getChildren().addAll(textField, btnBudgetRating, btnAverageRating, btnBonusPlus, btnBonusMinus, btnClear, labelMark);
         stage.show();
     }
 }
