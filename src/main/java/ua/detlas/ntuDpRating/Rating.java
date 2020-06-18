@@ -18,7 +18,7 @@ public class Rating {
     }
 
     public List<Number> ratingParsing(String rawRating) {
-        String freshRating = rawRating.replaceAll("[^\\s\\d.]", "").replaceAll("\\s+", " ");
+        String freshRating = rawRating.replaceAll("[^\\s\\d.]", "").replaceAll("\\s+", " ").trim();
         String[] arr = freshRating.split(" ");
         List<Number> ratingList = new ArrayList<Number>();
         for (String s : arr) {

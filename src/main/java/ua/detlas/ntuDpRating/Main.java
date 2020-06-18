@@ -1,9 +1,83 @@
 package ua.detlas.ntuDpRating;
 
-public class Main {
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.TextFormatter.Change;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+    private Label labelMark;
+    private double studentRating;
+    private int bonusMarkCounter;
+
     public static void main(String[] args) {
-        Rating rating = new Rating();
-        double studentRating = rating.ratingCalculate("");
-        System.out.println("Rating is " + studentRating);
+        launch(args);
+    }
+
+    public void start(Stage myStage) {
+        myStage.setTitle("Rating Calculator");
+        FlowPane rootNode = new FlowPane(10, 10);
+        rootNode.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(rootNode, 450, 150);
+        myStage.setScene(scene);
+
+        labelMark = new Label("0.0");
+        Button btnBudgetRating = new Button("BUDGET RATING");
+        Button btnAverageRating = new Button("AVERAGE RATING");
+        Button btnBonusPlus = new Button("+ BONUS");
+        Button btnClear = new Button("CLEAR");
+        TextField textField = new TextField();
+        textField.setPrefWidth(420);
+        textField.setTextFormatter(new TextFormatter<String>((Change c) -> {
+            String text = c.getText();
+            text = text.replaceAll("\t", "    ");
+            text = text.replaceAll("\n", "");
+            c.setText(text);
+            return c;
+        }));
+
+        btnBudgetRating.setOnAction(event -> {
+            String inputRating = textField.getText();
+            if (inputRating.trim().length() > 0) {
+                Rating rating = new Rating();
+                studentRating = rating.ratingCalculate(inputRating);
+                labelMark.setText("" + studentRating);
+            }
+        });
+
+        btnAverageRating.setOnAction(event -> {
+            String inputRating = textField.getText();
+            if (inputRating.trim().length() > 0) {
+                Rating rating = new Rating();
+                studentRating = rating.ratingCalculate(inputRating) / 0.94;
+                labelMark.setText("" + studentRating);
+            }
+        });
+
+        btnBonusPlus.setOnAction(event -> {
+            if (bonusMarkCounter != 6) {
+                bonusMarkCounter++;
+                studentRating++;
+                labelMark.setText("" + studentRating);
+            }
+        });
+
+        btnClear.setOnAction(event -> {
+            studentRating = 0.0;
+            bonusMarkCounter = 0;
+            labelMark.setText("" + studentRating);
+            textField.setText("");
+        });
+
+        rootNode.getChildren().addAll(textField, btnBudgetRating, btnAverageRating, btnBonusPlus, btnClear, labelMark);
+        myStage.show();
     }
 }
