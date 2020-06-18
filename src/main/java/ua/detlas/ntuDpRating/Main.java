@@ -1,8 +1,6 @@
 package ua.detlas.ntuDpRating;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +12,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private Label labelMark;
     private double studentRating;
     private int bonusMarkCounter;
 
@@ -22,18 +19,18 @@ public class Main extends Application {
         launch(args);
     }
 
-    public void start(Stage myStage) {
-        myStage.setTitle("Rating Calculator");
+    public void start(Stage stage) {
+        stage.setTitle("Rating Calculator");
         FlowPane rootNode = new FlowPane(10, 10);
         rootNode.setAlignment(Pos.CENTER);
         Scene scene = new Scene(rootNode, 450, 150);
-        myStage.setScene(scene);
+        stage.setScene(scene);
 
-        labelMark = new Label("0.0");
         Button btnBudgetRating = new Button("BUDGET RATING");
         Button btnAverageRating = new Button("AVERAGE RATING");
         Button btnBonusPlus = new Button("+ BONUS");
         Button btnClear = new Button("CLEAR");
+        Label labelMark = new Label("0.0");
         TextField textField = new TextField();
         textField.setPrefWidth(420);
         textField.setTextFormatter(new TextFormatter<String>((Change c) -> {
@@ -78,6 +75,6 @@ public class Main extends Application {
         });
 
         rootNode.getChildren().addAll(textField, btnBudgetRating, btnAverageRating, btnBonusPlus, btnClear, labelMark);
-        myStage.show();
+        stage.show();
     }
 }
