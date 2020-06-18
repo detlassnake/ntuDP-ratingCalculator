@@ -32,7 +32,7 @@ public class Main extends Application {
         Button btnClear = new Button("CLEAR");
         Label labelMark = new Label("0.0");
         TextField textField = new TextField();
-        textField.setPrefWidth(420);
+        textField.setPrefWidth(430);
         textField.setTextFormatter(new TextFormatter<String>((Change c) -> {
             String text = c.getText();
             text = text.replaceAll("\t", "    ");
