@@ -44,7 +44,12 @@ public class Rating {
         for (int i = 0; i < ratingList.size(); i++) {
             if (ratingList.get(i).toString().contains(".")) {
                 double credit = ratingList.get(i).doubleValue();
-                int mark = ratingList.get(i + 2).intValue();
+                int mark;
+                try {
+                    mark = ratingList.get(i + 2).intValue();
+                } catch (IndexOutOfBoundsException exception) {
+                    return 0.0;
+                }
                 sumCredit += credit;
                 multiplyCreditMark += (credit * mark);
             }
