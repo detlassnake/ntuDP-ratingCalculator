@@ -1,9 +1,15 @@
 package ua.detlas.ntuDpRating;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Rating {
+    private static final double ALPHA = 0.94;
+    private double sumCredit = 0.0;
+    private double sumMark = 0.0;
+    private double multiplyCreditMark = 0.0;
+    private int markCount = 0;
 
     public List<Number> ratingParsing(String rawRating) {
         String freshRating = rawRating.replaceAll("[^\\s\\d.]", "").replaceAll("\\s+", " ").trim();
@@ -15,22 +21,18 @@ public class Rating {
             } else {
                 try {
                     ratingList.add(Double.parseDouble(s));
-                } catch (NumberFormatException ignored) { }
+                } catch (NumberFormatException ignored) {
+                }
             }
         }
         return ratingList;
     }
 
-    public double budgetRatingCalculate(String rating) {
-        if (rating == null) {
-            return 0.0;
-        } else if (!rating.contains(".")) {
-            return 0.0;
+    public List<Number> ratingCalculate(String rating) {
+        if (rating == null || !rating.contains(".")) {
+            return Arrays.asList(0.0, 0.0);
         }
         List<Number> ratingList = ratingParsing(rating);
-        final double ALPHA = 0.94;
-        double sumCredit = 0.0;
-        int multiplyCreditMark = 0;
         for (int i = 0; i < ratingList.size(); i++) {
             if (ratingList.get(i).toString().contains(".")) {
                 double credit = ratingList.get(i).doubleValue();
@@ -38,34 +40,16 @@ public class Rating {
                 try {
                     mark = ratingList.get(i + 2).intValue();
                 } catch (IndexOutOfBoundsException exception) {
-                    return 0.0;
+                    return Arrays.asList(0.0, 0.0);
                 }
                 sumCredit += credit;
+                sumMark += mark;
                 multiplyCreditMark += (credit * mark);
-            }
-        }
-        return ALPHA * (multiplyCreditMark / sumCredit);
-    }
-
-    public double averageRatingCalculate(String rating) {
-        if (rating == null) {
-            return 0.0;
-        } else if (!rating.contains(".")) {
-            return 0.0;
-        }
-        List<Number> ratingList = ratingParsing(rating);
-        double markCount = 0.0;
-        int mark = 0;
-        for (int i = 0; i < ratingList.size(); i++) {
-            if (ratingList.get(i).toString().contains(".")) {
-                try {
-                    mark += ratingList.get(i + 2).intValue();
-                } catch (IndexOutOfBoundsException exception) {
-                    return 0.0;
-                }
                 markCount++;
             }
         }
-        return (mark / markCount);
+        double budgetRating = ALPHA * (multiplyCreditMark / sumCredit);
+        double averageRating = sumMark / markCount;
+        return Arrays.asList(budgetRating, averageRating);
     }
 }
