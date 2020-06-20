@@ -2,20 +2,8 @@ package ua.detlas.ntuDpRating;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Rating {
-    public String inputRating() {
-        Scanner in = new Scanner(System.in);
-        String rawRating;
-        System.out.println("Input data");
-        while (!in.hasNextLine()) {
-            System.out.println("ERROR");
-            in.next();
-        }
-        rawRating = in.nextLine();
-        return rawRating;
-    }
 
     public List<Number> ratingParsing(String rawRating) {
         String freshRating = rawRating.replaceAll("[^\\s\\d.]", "").replaceAll("\\s+", " ").trim();
@@ -33,7 +21,7 @@ public class Rating {
         return ratingList;
     }
 
-    public double ratingCalculate(String rating) {
+    public double budgetRatingCalculate(String rating) {
         if (rating == null) {
             return 0.0;
         } else if (!rating.contains(".")) {
@@ -57,5 +45,27 @@ public class Rating {
             }
         }
         return ALPHA * (multiplyCreditMark / sumCredit);
+    }
+
+    public double averageRatingCalculate(String rating) {
+        if (rating == null) {
+            return 0.0;
+        } else if (!rating.contains(".")) {
+            return 0.0;
+        }
+        List<Number> ratingList = ratingParsing(rating);
+        double markCount = 0.0;
+        int mark = 0;
+        for (int i = 0; i < ratingList.size(); i++) {
+            if (ratingList.get(i).toString().contains(".")) {
+                try {
+                    mark += ratingList.get(i + 2).intValue();
+                } catch (IndexOutOfBoundsException exception) {
+                    return 0.0;
+                }
+                markCount++;
+            }
+        }
+        return (mark/markCount);
     }
 }

@@ -45,7 +45,7 @@ public class Main extends Application {
             String inputRating = textField.getText();
             if (inputRating.trim().length() > 0) {
                 Rating rating = new Rating();
-                studentRating = rating.ratingCalculate(inputRating);
+                studentRating = rating.budgetRatingCalculate(inputRating);
                 labelMark.setText("" + studentRating);
             }
         });
@@ -54,7 +54,7 @@ public class Main extends Application {
             String inputRating = textField.getText();
             if (inputRating.trim().length() > 0) {
                 Rating rating = new Rating();
-                studentRating = rating.ratingCalculate(inputRating) / 0.94;
+                studentRating = rating.averageRatingCalculate(inputRating);
                 labelMark.setText("" + studentRating);
             }
         });
