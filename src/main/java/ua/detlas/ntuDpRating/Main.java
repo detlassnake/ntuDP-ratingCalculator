@@ -14,16 +14,12 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private double studentRating;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    public void start(Stage stage) {
-        stage.setTitle("Rating Calculator");
+    @Override
+    public void start(Stage primaryStage) {
         FlowPane rootNode = new FlowPane(10, 10);
+        primaryStage.setScene(new Scene(rootNode, 450, 150));
+        primaryStage.setTitle("Rating Calculator");
         rootNode.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(rootNode, 450, 150);
-        stage.setScene(scene);
 
         Button btnBudgetRating = new Button("BUDGET RATING");
         Button btnAverageRating = new Button("AVERAGE RATING");
@@ -76,6 +72,10 @@ public class Main extends Application {
         });
 
         rootNode.getChildren().addAll(textField, btnBudgetRating, btnAverageRating, btnBonusPlus, btnBonusMinus, btnClear, labelMark);
-        stage.show();
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

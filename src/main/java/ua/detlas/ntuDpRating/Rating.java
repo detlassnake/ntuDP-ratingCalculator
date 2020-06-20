@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Rating {
-    private static final double ALPHA = 0.94;
+    static final double ALPHA = 0.94;
     private double sumCredit = 0.0;
     private double sumMark = 0.0;
     private double multiplyCreditMark = 0.0;
@@ -44,7 +44,7 @@ public class Rating {
                 }
                 sumCredit += credit;
                 sumMark += mark;
-                multiplyCreditMark += (credit * mark);
+                multiplyCreditMark += credit * mark;
                 markCount++;
             }
         }
