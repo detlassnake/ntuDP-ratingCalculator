@@ -25,7 +25,9 @@ public class Rating {
             if (!s.contains(".")) {
                 ratingList.add(Integer.parseInt(s));
             } else {
-                ratingList.add(Double.parseDouble(s));
+                try {
+                    ratingList.add(Double.parseDouble(s));
+                } catch (NumberFormatException ignored) { }
             }
         }
         return ratingList;
