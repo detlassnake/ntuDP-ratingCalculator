@@ -13,9 +13,9 @@ public class Rating {
 
     public List<Number> ratingParsing(String rawRating) {
         String freshRating = rawRating.replaceAll("[^\\s\\d.]", "").replaceAll("\\s+", " ").trim();
-        String[] arr = freshRating.split(" ");
+        String[] stringNumbers = freshRating.split(" ");
         List<Number> ratingList = new ArrayList<>();
-        for (String s : arr) {
+        for (String s : stringNumbers) {
             if (!s.contains(".")) {
                 ratingList.add(Integer.parseInt(s));
             } else {
