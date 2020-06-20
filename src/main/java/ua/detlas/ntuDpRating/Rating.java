@@ -40,7 +40,7 @@ public class Rating {
             return 0.0;
         }
         List<Number> ratingList = ratingParsing(rating);
-        final double alpha = 0.94;
+        final double ALPHA = 0.94;
         double sumCredit = 0.0;
         int multiplyCreditMark = 0;
         for (int i = 0; i < ratingList.size(); i++) {
@@ -56,6 +56,6 @@ public class Rating {
                 multiplyCreditMark += (credit * mark);
             }
         }
-        return alpha * (multiplyCreditMark / sumCredit);
+        return ALPHA * (multiplyCreditMark / sumCredit);
     }
 }
