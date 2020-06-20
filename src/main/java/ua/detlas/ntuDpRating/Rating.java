@@ -66,6 +66,6 @@ public class Rating {
                 markCount++;
             }
         }
-        return (mark/markCount);
+        return (mark / markCount);
     }
 }
