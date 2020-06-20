@@ -56,8 +56,8 @@ public class Main extends Application {
         });
 
         btnBonusPlus.setOnAction(event -> {
-                studentRating++;
-                labelMark.setText("" + studentRating);
+            studentRating++;
+            labelMark.setText("" + studentRating);
         });
 
         btnBonusMinus.setOnAction(event -> {
