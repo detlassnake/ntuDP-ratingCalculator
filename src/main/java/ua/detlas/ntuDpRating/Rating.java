@@ -21,8 +21,7 @@ public class Rating {
             } else {
                 try {
                     ratingList.add(Double.parseDouble(s));
-                } catch (NumberFormatException ignored) {
-                }
+                } catch (NumberFormatException ignored) { }
             }
         }
         return ratingList;
