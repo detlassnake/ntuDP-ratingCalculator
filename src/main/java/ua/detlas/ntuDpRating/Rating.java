@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Rating {
     static final double ALPHA = 0.94;
+    private double budgetRating = 0.0;
+    private double averageRating = 0.0;
     private double sumCredit = 0.0;
     private double sumMark = 0.0;
     private double multiplyCreditMark = 0.0;
@@ -15,12 +17,12 @@ public class Rating {
         String freshRating = rawRating.replaceAll("[^\\s\\d.]", "").replaceAll("\\s+", " ").trim();
         String[] stringNumbers = freshRating.split(" ");
         List<Number> ratingList = new ArrayList<>();
-        for (String s : stringNumbers) {
-            if (!s.contains(".")) {
-                ratingList.add(Integer.parseInt(s));
+        for (String number : stringNumbers) {
+            if (!number.contains(".")) {
+                ratingList.add(Integer.parseInt(number));
             } else {
                 try {
-                    ratingList.add(Double.parseDouble(s));
+                    ratingList.add(Double.parseDouble(number));
                 } catch (NumberFormatException ignored) { }
             }
         }
@@ -38,7 +40,7 @@ public class Rating {
                 int mark;
                 try {
                     mark = ratingList.get(i + 2).intValue();
-                } catch (IndexOutOfBoundsException exception) {
+                } catch (IndexOutOfBoundsException e) {
                     return Arrays.asList(0.0, 0.0);
                 }
                 sumCredit += credit;
@@ -47,8 +49,13 @@ public class Rating {
                 markCount++;
             }
         }
-        double budgetRating = ALPHA * (multiplyCreditMark / sumCredit);
-        double averageRating = sumMark / markCount;
+        budgetRating = ALPHA * (multiplyCreditMark / sumCredit);
+        averageRating = sumMark / markCount;
         return Arrays.asList(budgetRating, averageRating);
+    }
+
+    @Override
+    public String toString() {
+        return "Rating{" + "budgetRating = " + budgetRating + ", averageRating = " + averageRating + ", markCount = " + markCount + "}";
     }
 }
