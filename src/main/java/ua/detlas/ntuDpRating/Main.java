@@ -8,7 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,6 +21,8 @@ public class Main extends Application {
         FlowPane rootNode = new FlowPane(10, 10);
         primaryStage.setScene(new Scene(rootNode, 450, 150));
         primaryStage.setTitle("Rating Calculator");
+        primaryStage.getIcons().add(new Image("icons/ntu-dp-logo.png"));
+        primaryStage.setResizable(false);
         rootNode.setAlignment(Pos.CENTER);
 
         Button btnBudgetRating = new Button("BUDGET RATING");
@@ -28,6 +32,8 @@ public class Main extends Application {
         Button btnClear = new Button("CLEAR");
         Label labelMark = new Label("0.0");
         TextField textField = new TextField();
+
+        labelMark.setTextFill(Color.web("#000000"));
         textField.setPrefWidth(430);
         textField.setTextFormatter(new TextFormatter<String>((Change c) -> {
             String text = c.getText();
