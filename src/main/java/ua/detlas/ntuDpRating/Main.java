@@ -21,7 +21,7 @@ public class Main extends Application {
         FlowPane rootNode = new FlowPane(10, 10);
         primaryStage.setScene(new Scene(rootNode, 450, 150));
         primaryStage.setTitle("Rating Calculator");
-        primaryStage.getIcons().add(new Image("icons/ntu-dp-logo.png"));
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/ntu-dp-logo.png")));
         primaryStage.setResizable(false);
         rootNode.setAlignment(Pos.CENTER);
 
