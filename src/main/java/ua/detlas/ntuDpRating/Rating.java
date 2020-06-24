@@ -17,6 +17,7 @@ public class Rating {
         String freshRating = rawRating.replaceAll("[^\\s\\d.]", "").replaceAll("\\s+", " ").trim();
         String[] stringNumbers = freshRating.split(" ");
         List<Number> ratingList = new ArrayList<>();
+
         for (String number : stringNumbers) {
             if (!number.contains(".")) {
                 ratingList.add(Integer.parseInt(number));
@@ -33,7 +34,9 @@ public class Rating {
         if (rating == null || !rating.contains(".")) {
             return Arrays.asList(0.0, 0.0);
         }
+
         List<Number> ratingList = ratingParsing(rating);
+
         for (int i = 0; i < ratingList.size(); i++) {
             if (ratingList.get(i).toString().contains(".")) {
                 double credit = ratingList.get(i).doubleValue();
@@ -51,6 +54,7 @@ public class Rating {
         }
         budgetRating = ALPHA * (multiplyCreditMark / sumCredit);
         averageRating = sumMark / markCount;
+
         return Arrays.asList(budgetRating, averageRating);
     }
 

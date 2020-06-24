@@ -1,8 +1,8 @@
 # ntuDP-ratingCalculator
-Инструкция. 
-Заходишь на сайт do.nmu.org.ua переходишь в вкладку "результати навчання" и копируешь все что относится к данному семестру (ничего выбирать не нужно, копировать все, со всеми лишними даными такие как именами, названия спецальностей и т.д.). Вставляешь скопированный текст в поле для ввода.
+Instruction.
+You go to the site do.nmu.org.ua, go to the tab "Learning outcomes" and copy everything that belongs to this semester (you do not need to choose anything, copy everything with all the extra data such as names, names of specialties, etc.) after paste the copied text into the input field.
 ***
-Пример текста:                
+Sample text:                
 2 / 4	Комп'ютерні мережі	Інформаційних систем та технологій	Бешта Лілія Валеріївна 	150 / 5.0	5	98	A
 2 / 4	Курсова робота з організації баз даних та знань	Програмного забезпечення комп'ютерних систем		15 / 0.5	5	95	A
 2 / 4	Організація баз даних та знань	Програмного забезпечення комп'ютерних систем	Кабак Леонід Віталійович	120 / 4.0	5	100	A
